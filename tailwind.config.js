@@ -11,6 +11,9 @@ export default {
       'color4': '#442432'
 
     },
+    fontFamily: {
+      'croissant': ['Croissant One', 'cursive']
+    },
     extend: {},
   },
   plugins: [],
