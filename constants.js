@@ -1,4 +1,4 @@
 export const TURNS = {
-    x: '🔵',
-    y: '🔴'
+    X: '🔵',
+    Y: '🔴'
 }
