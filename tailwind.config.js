@@ -5,10 +5,10 @@ export default {
   ],
   theme: {
     colors: {
-      'color1': '#43777a',
-      'color2': '#ecd079',
-      'color3': '#c02948',
-      'color4': '#442432'
+      'color1': '#6499E9',
+      'color2': '#9EDDFF',
+      'color3': '#A6F6FF',
+      'color4': '#BEFFF7' 
 
     },
     fontFamily: {
