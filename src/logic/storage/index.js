@@ -15,7 +15,3 @@ export const resetVictoriesStorage = () => {
     window.localStorage.removeItem('victories')
 }
 
-export const showModalWinnerStorage = (winner) => {
-    window.localStorage.setItem('winner', winner)
-}
-

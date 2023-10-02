@@ -9,7 +9,7 @@ import {checkWinner, checkEndGame} from './logic/board'
 
 import './App.css'
 import WinnerModal from './components/WinnerModal'
-import { resetGameStorage, resetVictoriesStorage, saveGameStorage, saveVictoriesStorage, showModalWinnerStorage } from './logic/storage'
+import { resetGameStorage, resetVictoriesStorage, saveGameStorage, saveVictoriesStorage } from './logic/storage'
 
 function App() {
 
@@ -22,7 +22,7 @@ function App() {
     const turnFromStorage = window.localStorage.getItem('turn')
     return turnFromStorage ? turnFromStorage : TURNS.X
   })
-  const [victories, setVictories] = useState(()=> {
+  const [victories, setVictories] = useState(() => {
     const victoriesFromStorage = JSON.parse(window.localStorage.getItem('victories'))
     return victoriesFromStorage ? 
           victoriesFromStorage :  
@@ -33,16 +33,13 @@ function App() {
   })
   // null => aún no existe ganador 
   // false => la partida ha terminado en empate
-  const [winner, setWinner] = useState( () => {
-    const winnerFromStorage = window.localStorage.getItem('winner')
-    return winnerFromStorage ? winnerFromStorage : null
-  })
+  const [winner, setWinner] = useState(null)
 
   const classTurn = 'bg-color1 p-2 rounded-lg'
 
   const updateBoard = (index) => {
     // No actualizamos la posición si ya tiene ficha
-    if (board[index] || winner) return
+    if ( board[index] || winner ) return
     // Actualiza el tablero
     const newBoard = [...board]
     newBoard[index] = turn
@@ -70,6 +67,7 @@ function App() {
     } else if (checkEndGame(newBoard)){
       setWinner(false)
     }
+
   }
 
   const resetGame = () => {
@@ -92,8 +90,8 @@ function App() {
     // Guardar la partida en localStore
     saveGameStorage(board, turn)
     saveVictoriesStorage(victories)
-    showModalWinnerStorage(winner)
-  }, [board, turn, victories, winner]);
+
+  }, [board, turn, victories]);
 
   return (
     <main className='w-fit my-10 mx-auto'>
@@ -118,6 +116,7 @@ function App() {
                           my-5'
       >
         {
+
           board.map((square, index) => {
             return(
               <Square
@@ -135,7 +134,7 @@ function App() {
           <Button text='Reiniciar Partida' clickAction={resetGame} color='color1'/>
           <Button text='Reiniciar Marcadores' clickAction={resetWins} color='color1'/>
       </section>
-        <WinnerModal winner={winner} resetGame={resetGame}/>       
+      <WinnerModal winner={winner} resetGame={resetGame}/>       
     </main>
   )
 }
