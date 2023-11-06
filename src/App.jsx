@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import confetti from 'canvas-confetti'
 
 import Square from './components/Square'
 import Marker from './components/Marker'
@@ -50,6 +51,7 @@ function App() {
     // Comprueba si existe un ganador 
     const newWinner = checkWinner(newBoard) 
     if (newWinner) {
+      confetti()
       setWinner(newWinner)
       if (newWinner === TURNS.X) {
         const newVictories = {
